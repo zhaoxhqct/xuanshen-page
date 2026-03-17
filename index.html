@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>许昊龙(炫神) - 个人介绍</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 正确：全屏背景 + 正常滚动 + 不裁切头部 */
+html, body {
+  height: 100%;
+}
+body {
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  background: #050508 url("1-210606233605636.jpg") no-repeat center top;
+  background-size: 100% auto; /* 保证图片完整显示，头部不丢失 */
+  background-attachment: scroll; /* 正常滚轮滚动 */
+  color: #e0e0e0;
+  line-height: 1.7;
+  padding: 30px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* 背景遮罩（提高清晰度） */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #050508;
+  opacity: 0.75;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* 音乐按钮 */
+#musicBtn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #12121a;
+  border: 1px solid #4f7fff;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 999;
+  transition: all 0.3s;
+}
+#musicBtn:hover {
+  background: #4f7fff;
+  color: #000;
+}
+
+/* 鼠标流光完美居中 */
+#mouse-follow {
+  position: fixed;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(79,127,255,0.25), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+  transition: transform 0.02s linear;
+  left: 0;
+  top: 0;
+}
+
+/* 粒子背景 */
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+}
+
+/* 渐变线 */
+.gradient-line {
+  height: 1px;
+  background: linear-gradient(90deg, #4f7fff, #ff4f8b, #7c4dff, #4f7fff);
+  background-size: 300% 100%;
+  animation: gradientFlow 6s linear infinite;
+  margin: 20px 0;
+}
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+/* 动画样式 */
+h1 {
+  font-size: 46px;
+  text-align: center;
+  background: linear-gradient(90deg, #4f7fff, #7c4dff, #ff4f8b, #4f7fff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 300% 100%;
+  animation: gradientFlow 6s linear infinite, fadeIn 1s 0.2s forwards;
+  margin-bottom: 12px;
+  opacity: 0;
+}
+h2 {
+  font-size: 24px;
+  margin: 38px 0 16px 0;
+  color: #fff;
+  position: relative;
+  padding-left: 18px;
+  opacity: 0;
+  animation: fadeIn 0.8s 0.4s forwards;
+}
+h2::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 8px;
+  width: 6px; height: 22px;
+  background: #4f7fff;
+  border-radius: 2px;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity:1; } 50% { opacity:0.4; }
+}
+p {
+  font-size: 16px;
+  color: #c0c0d0;
+  margin-bottom: 12px;
+  opacity: 0;
+  animation: fadeIn 0.8s 0.6s forwards;
+}
+
+ul, ol { list-style: none; }
+li {
+  background: #12121a;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  border: 1px solid #222230;
+  opacity: 0;
+  animation: fadeIn 0.7s forwards;
+  transition: 0.3s;
+}
+li:hover {
+  border-color: #4f7fff;
+  transform: translateX(8px);
+}
+li strong { color: #72a0ff; }
+
+img {
+  border-radius: 16px;
+  margin: 20px 0;
+  opacity: 0;
+  animation: imgPop 1s 0.5s forwards;
+}
+@keyframes fadeIn {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes imgPop {
+  from { opacity:0; transform:scale(0.9); }
+  to { opacity:1; transform:scale(1); }
+}
+
+li:nth-child(1) { animation-delay:0.7s; }
+li:nth-child(2) { animation-delay:0.8s; }
+li:nth-child(3) { animation-delay:0.9s; }
+li:nth-child(4) { animation-delay:1.0s; }
+li:nth-child(n+5) { animation-delay:1.1s; }
+</style>
+</head>
+
+<body>
+
+<button id="musicBtn">播放音乐</button>
+<audio id="bgm" loop>
+  <source src="C:\CloudMusic\电台节目\爱上干也的荒耶式 - 大家一起炫gogo.mp3" type="audio/mpeg">
+</audio>
+
+<div id="mouse-follow"></div>
+<canvas id="particles"></canvas>
+
+<!-- 完整内容 -->
+<h1>许昊龙(炫神)</h1>
+<div class="gradient-line"></div>
+<p>炫神，本名许昊龙，ID：Last 炫神丶 zz，B 站英雄联盟主播，电竞抽象文化、低素质直播代表人物，外号炫狗、龙哥、福州真龙、口水娃，粉丝群体自称炫家军。早年为 S6 高分路人，从未打过职业，后期靠嘴臭、阴阳怪气、攻击职业选手、制造节奏出圈，直播风格攻击性极强，素质低下，是英雄联盟圈争议最大的主播之一。</p>
+<img src="1-210606233605636.jpg" style="width:400px; height:auto; object-fit:cover; display:block;">
+
+<h2>早年经历与基础标签</h2>
+<ul>
+  <li><strong>S6 第一个王者</strong><p>S6 赛季初期，仅用 3 天 72 局从白金 1 冲上艾欧尼亚王者 320 点，成为当赛季国服首个王者，一度拉开第二名 90 分，是其生涯唯一高光。此后常年复读 “S6 含金量最高”，被观众嘲讽活在过去。</p></li>
+  <li><strong>天不生我拉斯特炫</strong><p>化用 “天不生仲尼，万古如长夜”，被粉丝改编为“天不生我拉斯特炫，国服上单万古长如夜”，后沦为反向嘲讽梗。</p></li>
+  <li><strong>福州真龙 / 龙哥</strong><p>因本名许昊龙，直播时常以 “龙哥” 自居，粉丝及部分圈内人跟风称呼，职业选手 Cube 曾在其退网动态下留言 “龙哥，别！”，成为名场面。</p></li>
+  <li><strong>炫狗 / 口水娃</strong><p>早期因嘴臭被观众称为 “炫狗”；直播频繁吸溜口水，被调侃为 “口水娃”。</p></li>
+  <li><strong>祖传蓝水晶</strong><p>游戏出门固定喜欢带蓝水晶，被观众戏称为 “祖传蓝水晶”，成为标志性出装梗。</p></li>
+  <li><strong>小 TheShy</strong><p>早年上单操作犀利，曾被称作 “小 TheShy”，后期却反咬 TheShy，带头造黑称，彻底翻脸。</p></li>
+  <li><strong>跨年故事会</strong><p>每年跨年夜必重讲 “S6 第一个王者” 往事，被粉丝固定称为 “跨年故事会”。</p></li>
+  <li><strong>国服第一嘴强上单</strong><p>常年自称 “国服第一上单”，实际操作下饭、频繁被单杀，被观众反讽。</p></li>
+</ul>
+
+<h2>核心梗、节奏与争议事件</h2>
+<ul>
+  <li><strong>针对 TheShy：马头 NB / 邪不胜正 事件</strong>
+    <ol>
+      <li><strong>马头 NB</strong><p>在 LPL 二路解说期间，恶意给 TheShy 起黑称“马头”“马脸”，嘲讽长相，并教唆粉丝在赛场刷“马头 NB”，引发大规模愤怒，被官方直接取消解说资格。</p></li>
+      <li><strong>马头蒸菜 / 翡翠僵尸</strong><p>进一步衍生侮辱性词汇，带头 P 图、辱骂 TheShy，激化粉丝对立。</p></li>
+      <li><strong>邪不胜正</strong><p>被取消解说后，开启黑屏解说辱骂 iG，宣称 iG 输比赛是 “邪不胜正”，并发起抽奖庆祝 iG 对手获胜，要求获奖者不能是 iG 粉丝。</p></li>
+      <li><strong>被起诉 + 认怂</strong><p>TheShy、Rookie 联合起诉其造谣、侮辱名誉（含造谣 Rookie 卖过期泡面），炫神在住院期间收到律师函，随后私下和解，当场认怂称“TheShy 是我一辈子姜大哥”，转头又破防放狠话。</p></li>
+      <li><strong>第一次 JS 世界大战</strong><p>网友将其与 TheShy粉丝的大规模骂战称为 “第一次 JS（姜神）世界大战”，嘲讽其彻底败退</p></li>
+    </ol>
+  </li>
+  <li><strong>针对 Wei：涅槃 / 沙威玛 事件</strong>
+    <ol>
+      <li><strong>涅槃黑称</strong><p>因 2021MSI Wei 带队击败其喜欢的 DK 选手 ShowMaker，长期阴阳 Wei，称其为“涅槃组打野”。</p></li>
+      <li><strong>沙威玛谐音辱骂</strong><p>借游戏《沙威玛传奇》玩谐音，恶意辱骂 Wei 家人，底线极低。</p></li>
+      <li><strong>炫迈 S 破防</strong><p>Wei 直播镜头拍到 “炫迈 S” 口香糖，被网友谐音“炫母死”反击，炫神连夜破防、拉黑上千人、关闭评论区。</p></li>
+      <li><strong>孽盘菜必干死你</strong><p>直播怒喷 Wei，情绪失控，成为经典破防名场面</p></li>
+    </ol>
+  </li>
+</ul>
+
+<h2>经典嘴硬语录、口头禅、公式梗</h2>
+<ol>
+  <li><strong>炫神公式：AA 又 BB</strong><p>自创句式：“这就是你龙哥的 XX 啊，真是 AA 又 BB啊”，如：轻轻又松松、先先又攻攻、焦焦又灼灼、简简又单单。</p></li>
+  <li><strong>我的 XX 打 YY 就是如图猪狗</strong><p>吹嘘英雄克制，实际经常被暴打。</p></li>
+  <li>
+            <Strong>好垃圾的 XX，送他一个吧</Strong>
+            <p>阴阳怪气队友 / 对手的经典句式。</p>
+        </li>
+        <li>
+            <Strong>你们有没有我这么 XX 的 XX 啊</Strong>
+            <p>强行装逼失败专用。</p>
+        </li>
+</ol>
+  <h2>粉丝文化与衍生抽象梗</h2>
+     <ol>
+        <li>
+            <Strong>炫家军</Strong>
+            <p>炫神粉丝自称，以抽象、攻击性、玩黑梗为核心特征。</p>
+        </li>
+        <li>
+            <Strong>炫炫炫炫</Strong>
+            <p>直播间经典刷屏弹幕，后扩散成全网抽象梗</p>
+        </li>
+        <li>
+            <Strong>别炫了，真不熟</Strong>
+            <p>嘲讽过度玩炫神梗的人，衍生：别熟了，真不炫。</p>
+        </li>
+        <li>
+            <Strong>炫步 </Strong>
+            <p>一次虎牙的直播活动中走出的奇怪姿势步伐</p>
+        </li>
+        <li>
+            <Strong>JSJJ</Strong>
+            <p>炫家军嘲讽 TheShy 粉丝的黑称缩写。</p>
+        </li>
+        <li>
+            <Strong>白衣大奶</Strong>
+            <p>早年旧照被粉丝翻出，用于调侃青涩时期。</p>
+        </li>
+        <li>
+            <Strong>笨蛋奶妈</Strong>
+            <p>无畏契约中朝队友脚下丢火，路人哭腔吐槽：你个笨蛋奶妈，成梗。</p>
+        </li>
+        <li>
+            <Strong>炫压抑</Strong>
+            <p>形容其直播间压抑、负能量爆棚的氛围。</p>
+        </li>
+     </ol>
+
+  <h2>整体评价</h2>
+      <ul>
+        <li>
+            <Strong>炫神是典型靠实力起家、靠素质翻车的主播：</Strong>
+            <ul>
+                <li>
+                    <p>早年靠S6 第一个王者获得路人认可；</p>
+                </li>
+                <li>
+                    <p>后期放弃操作，专攻嘴臭、阴阳、攻击选手、制造对立、炒作节奏；</p>
+                </li>
+                <li>
+                    <p>多次被平台处罚、被官方取消解说、被职业选手起诉、被全网指责低素质；</p>
+                </li>
+                <li>
+                    <p>其梗 90% 以上来自辱骂、黑称、破防、嘴硬、背刺、炒作，是电竞抽象文化、低素质直播的标志性人物。</p>
+                </li>
+            </ul>
+        </li>
+      </ul>
+<script>
+// 鼠标流光完美居中
+const mf = document.getElementById('mouse-follow');
+window.addEventListener('mousemove', e => {
+  mf.style.transform = `translate(${e.clientX - 160}px, ${e.clientY - 160}px)`;
+});
+
+// 粒子动画
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let w = canvas.width = innerWidth;
+let h = canvas.height = innerHeight;
+let particles = Array.from({length:80},()=>({
+  x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.6+0.4,dx:(Math.random()-0.5)*0.4,dy:(Math.random()-0.5)*0.4
+}));
+function draw(){
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle='#4f7fff';
+  particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();p.x+=p.dx;p.y+=p.dy;p.x<0||p.x>w?p.x=Math.random()*w:0;p.y<0||p.y>h?p.y=Math.random()*h:0;});
+  requestAnimationFrame(draw);
+}
+draw();
+
+// 音乐控制
+const bgm = document.getElementById('bgm');
+const btn = document.getElementById('musicBtn');
+btn.onclick = () => {
+  bgm.paused ? (bgm.play(), btn.textContent='暂停音乐') : (bgm.pause(), btn.textContent='播放音乐');
+}
+</script>
+</body>
+</html>
