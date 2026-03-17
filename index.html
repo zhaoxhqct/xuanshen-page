@@ -11,15 +11,14 @@
   box-sizing: border-box;
 }
 
-/* 正确：全屏背景 + 正常滚动 + 不裁切头部 */
 html, body {
   height: 100%;
 }
 body {
   font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
   background: #050508 url("1-210606233605636.jpg") no-repeat center top;
-  background-size: 100% auto; /* 保证图片完整显示，头部不丢失 */
-  background-attachment: scroll; /* 正常滚轮滚动 */
+  background-size: 100% auto;
+  background-attachment: scroll; 
   color: #e0e0e0;
   line-height: 1.7;
   padding: 30px 20px;
@@ -29,7 +28,6 @@ body {
   overflow-x: hidden;
 }
 
-/* 背景遮罩（提高清晰度） */
 body::before {
   content: '';
   position: fixed;
@@ -62,7 +60,7 @@ body::before {
   color: #000;
 }
 
-/* 鼠标流光完美居中 */
+/* 鼠标流光 */
 #mouse-follow {
   position: fixed;
   width: 320px;
@@ -184,13 +182,12 @@ li:nth-child(n+5) { animation-delay:1.1s; }
 
 <button id="musicBtn">播放音乐</button>
 <audio id="bgm" loop>
-  <source src="C:\CloudMusic\电台节目\爱上干也的荒耶式 - 大家一起炫gogo.mp3" type="audio/mpeg">
+  <source src="爱上干也的荒耶式 - 大家一起炫gogo.mp3" type="audio/mpeg">
 </audio>
 
 <div id="mouse-follow"></div>
 <canvas id="particles"></canvas>
 
-<!-- 完整内容 -->
 <h1>许昊龙(炫神)</h1>
 <div class="gradient-line"></div>
 <p>炫神，本名许昊龙，ID：Last 炫神丶 zz，B 站英雄联盟主播，电竞抽象文化、低素质直播代表人物，外号炫狗、龙哥、福州真龙、口水娃，粉丝群体自称炫家军。早年为 S6 高分路人，从未打过职业，后期靠嘴臭、阴阳怪气、攻击职业选手、制造节奏出圈，直播风格攻击性极强，素质低下，是英雄联盟圈争议最大的主播之一。</p>
@@ -299,7 +296,7 @@ li:nth-child(n+5) { animation-delay:1.1s; }
         </li>
       </ul>
 <script>
-// 鼠标流光完美居中
+// 鼠标流光
 const mf = document.getElementById('mouse-follow');
 window.addEventListener('mousemove', e => {
   mf.style.transform = `translate(${e.clientX - 160}px, ${e.clientY - 160}px)`;
